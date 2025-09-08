@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrivacyTools+ | Free Offline Encryption, Secure Username Generator & Hash Tools</title>
+    <meta name="description" content="100% offline browser tools for encryption, secure username generation, and hashing. No data leaves your computer. No signup required. Completely private and secure.">
+    <meta name="keywords" content="encrypt text online no upload, generate secure username online free, SHA256 hash generator browser, offline encryption tool, client-side hashing, privacy tools">
+    <meta name="author" content="PrivacyTools+">
+    <meta property="og:title" content="PrivacyTools+ | Free Offline Encryption Tools">
+    <meta property="og:description" content="100% offline browser tools for encryption, secure username generation, and hashing. No data leaves your computer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://privacytools.example.com">
+    <meta property="og:image" content="https://privacytools.example.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PrivacyTools+ | Free Offline Encryption Tools">
+    <meta name="twitter:description" content="100% offline browser tools for encryption, secure username generation, and hashing.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PrivacyTools+",
+      "url": "https://privacytools.example.com",
+      "description": "100% offline browser tools for encryption, secure username generation, and hashing.",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "operatingSystem": "Any",
+      "softwareVersion": "1.0"
+    }
+    </script>
+    <style>
+        :root {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-primary: #6366f1;
+            --color-primary-light: #818cf8;
+            --color-secondary: #10b981;
+            --color-accent: #f43f5e;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #0f172a;
+                --color-surface: #1e293b;
+                --color-text: #f1f5f9;
+                --color-text-light: #94a3b8;
+                --color-border: #334155;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius);
+            margin: 20px 0 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (min-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .tool-card {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .tool-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .tool-description {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Form Elements */
+        textarea, input[type="text"], select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-text);
+            font-size: 16px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        textarea:focus, input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #0da271;
+        }
+
+        .btn-accent {
+            background: var(--color-accent);
+        }
+
+        .btn-accent:hover {
+            background: #e63c5c;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            margin-top: 20px;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-bg);
+            transform: none;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        /* Output */
+        .output {
+            word-wrap: break-word;
+            padding: 20px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: 'Fira Code', monospace;
+            min-height: 80px;
+            transition: var(--transition);
+        }
+
+        .output:hover {
+            border-color: var(--color-primary);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: var(--color-bg);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: transparent;
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 60px 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--color-primary);
+        }
+
+        .faq-item {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--color-text-light);
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-surface);
+            padding: 40px 0;
+            margin-top: 80px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .footer-description {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-heading {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color:极var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-light);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification-success {
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .notification-error {
+            border-left: 4px solid var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .badge {
+                font-size: 0.8rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>Privacy Tools That Respect Your Data</h1>
+            <p>Free offline browser tools for encryption, secure username generation, and hashing. Your data never leaves your device. No signup required.</p>
+            <a href="#tools" class="btn">
+                <i class="fas fa-rocket"></i> Explore Tools
+            </a>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i> No Data Collection
+                </div>
+                <div class="badge">
+                    <i class="fas fa-bolt"></i> 100% Offline
+                </div>
+                <div class="badge">
+                    <i class="fas fa-eye-slash"></i> No Tracking
+                </div>
+                <div class="badge">
+                    <i class="fas fa-ban"></i> Zero Ads
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container" id="tools">
+        <div class="tools-grid">
+            <!-- Encryption Tool -->
+            <div class="tool-card" id="encrypt">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h2 class="tool-title">Text Encryption Tool</h2>
+                </div>
+                <p class="tool-description">Encrypts text using a password with AES-256-GCM. The result is a self-contained string you can share safely. No data leaves your browser.</p>
+                
+                <div class="tabs">
+                    <button class="tab active" data-tab="encrypt-tab">Encrypt</button>
+                    <button class="tab" data-tab="decrypt-tab">Decrypt</button>
+                </div>
+                
+                <div class="tab-content active" id="encrypt-tab">
+                    <textarea id="encrypt-input" placeholder="Enter text to encrypt here..." rows="4"></textarea>
+                    <input type="text" id="encrypt-passphrase" placeholder="Your secret passphrase..." autocomplete="off">
+                    <button class="btn btn-full" onclick="encrypt()">
+                        <i class="fas fa-lock"></i> Encrypt Text
+                    </button>
+                </div>
+                
+                <div class="tab-content" id="decrypt-tab">
+                    <textarea id="decrypt-input" placeholder="Paste encrypted text here..." rows="4"></textarea>
+                    <input type="text" id="decrypt-passphrase" placeholder="Enter the passphrase..." autocomplete="off">
+                    <button class="btn btn-full" onclick="decrypt()">
+                        <i class="fas fa-unlock"></i> Decrypt Text
+                    </button>
+                </div>
+                
+                <div class="output" id="encryption-output">Result will appear here...</div>
+            </div>
+
+            <!-- Username Generator -->
+            <div class="tool-card" id="username">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h2 class="tool-title">Secure Username Generator</h2>
+                </div>
+                <p class="tool-description">Create random, secure usernames that don't reveal your identity. Choose from different styles. All processing happens in your browser.</p>
+                
+                <select id="username-style">
+                    <option value="crypto">Crypto Adjective + Animal</option>
+                    <option value="phonetic">Phonetic Word + Numbers</option>
+                    <option value="book">Book Title + Character</option>
+                    <option value="alliterative">Alliterative Names</option>
+                </select>
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="generateUsername()">
+                        <i class="fas fa-dice"></i> Generate
+                    </button>
+                    <button class="btn btn-accent" onclick="generateMultiple(5)">
+                        <i class="fas fa-bolt"></i> Generate 5
+                    </button>
+                </div>
+                
+                <div class="output" id="username-output">Your secure username will appear here...</div>
+            </div>
+
+            <!-- Hash Generator -->
+            <div class="tool-card" id="hash">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h2极="tool-title">Hash Generator Tool</h2>
+                </div>
+                <p class="tool-description">Generate cryptographic hashes from your text. All processing happens in your browser. Supports SHA-256, SHA-512, MD5 and more.</p>
+                
+                <textarea id="hash-input" placeholder="Enter text to hash here..." rows="3"></textarea>
+                
+                <select id="hash-algorithm">
+                    <option value="SHA-256">极SHA-256</option>
+                    <option value="SHA-512">SHA-512</option>
+                    <option value="SHA-1">SHA-1</option>
+                    <option value="MD5">MD5</option>
+                    <option value="SHA-384">SHA-384</option>
+                </select>
+                
+                <button class="btn btn-full" onclick="generateHash()">
+                    <i class="fas fa-calculator"></i> Generate Hash
+                </button>
+                
+                <div class="output" id="hash-output">Hash result will appear here...</div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section" id="faq">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is my data secure with these tools? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! All processing happens entirely in your browser. Your data never leaves your device or gets sent to any server. This is the most secure way to use online tools for sensitive operations.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq极question" onclick="toggleFaq(this)">
+                    Do I need to create an account or install anything? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No, PrivacyTools+ works entirely in your browser with no installations required. There are no accounts or signups needed - just open the website and start using the tools.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick极="toggleFaq(this)">
+                    What encryption algorithm is used for text encryption? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We use AES-256-GCM, which is a military-grade encryption algorithm considered secure by security experts worldwide. The implementation uses the Web Crypto API available in modern browsers.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I use these tools offline? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! Once the page is loaded, you can use all tools without an internet connection. You can even save the page to your device for offline access.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Are these tools really free? <极i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="fa极q-answer">
+                    Yes, PrivacyTools+ is completely free to use. We don't show ads or charge for access. We believe privacy tools should be accessible to everyone.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">PrivacyTools+</div>
+                    <p class="footer-description">Free offline browser tools for encryption, secure username generation, and hashing. Your data never leaves your device.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="#encrypt">Text Encryption</a></li>
+                        <li><a href="#username">Username Generator</a></li>
+                        <li><a href="#hash">Hash Generator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 PrivacyTools+. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Text copied to clipboard!</span>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                // Deactivate all tabs
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                
+                // Activate clicked tab
+                tab.classList.add('active');
+                document.getElementById(`${tabName}`).classList.add('active');
+            });
+        });
+
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const answer = element.nextElement极Sibling;
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                answer.classList.add('active');
+            }
+        }
+
+        // Word lists for username generation
+        const adjectives = ['Stealthy', 'Quantum', 'Virtual', 'Cosmic', 'Rusty', 'Mystic', 'Digital', 'Atomic', 'Covert', 'Nimble'];
+        const animals = ['Falcon', 'Badger', 'Mantis', 'Gecko', 'Koala', 'Phoenix', 'Dragon', 'Leopard', 'Wolf', 'Hawk'];
+        const nouns = ['Algorithm', 'Cipher', 'Nebula', 'Vector', 'Matrix', 'Protocol', 'Byte', 'Logic', 'Syntax', 'Node'];
+        const bookTitles = ['Iliad', 'Odyssey', 'Ulysses', 'MobyDick', 'Paradise', 'Inferno', 'Crusoe', 'Gatsby', 'Prague', 'Sahara'];
+        const characters = ['Hero', 'Sage', 'Mentor', 'Guardian', 'Explorer', 'Rebel', 'Artist', 'Engineer', 'Pilot', 'Captain'];
+        const phonetic = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliet'];
+
+        // Encryption functions
+        async function deriveKey(passphrase, salt, iterations=100000) {
+            const textEncoder = new TextEncoder();
+            const keyMaterial = await window.crypto.subtle.importKey(
+                'raw',
+                textEncoder.encode(passphrase),
+                { name: 'PBKDF2' },
+                false,
+                ['deriveKey']
+            );
+
+            return await window.crypto.subtle.deriveKey(
+                {
+                    name: 'PBK极DF2',
+                    salt: salt,
+                    iterations: iterations,
+                    hash: 'SHA-256'
+                },
+                keyMaterial,
+                { name: 'AES-GCM', length: 256 },
+                false,
+                ['encrypt', 'decrypt']
+            );
+        }
+
+        async function encrypt() {
+            const plaintext = document.getElementById('encrypt-input').value;
+            const passphrase = document.getElementById('encrypt-passphrase').value;
+
+            if (!plaintext || !passphrase) {
+                showNotification('Please enter both text and a passphrase.', true);
+                return;
+            }
+
+            try {
+                const salt = crypto.getRandomValues(new Uint8Array(16));
+                const iv = crypto.getRandomValues(new Uint8Array(12));
+                const key = await deriveKey(passphrase, salt);
+
+                const encryptedData = await window.crypto.subtle.encrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    new TextEncoder().encode(plaintext)
+                );
+
+                // Combine salt, iv, and ciphertext into a single string
+                const combinedArray = new Uint8Array(salt.length + iv.length + encryptedData.byteLength);
+                combinedArray.set(salt, 0);
+                combinedArray.set(iv, salt.length);
+                combinedArray.set(new Uint8Array(encryptedData), salt.length + iv.length);
+
+                // Convert to Base64 for easy sharing
+                const combinedString = btoa(String.fromCharCode(...combinedArray));
+                document.getElementById('encryption-output').textContent = combinedString;
+                
+                // Copy to clipboard
+                copyToClipboard(combinedString);
+                showNotification('Encrypted text copied to clipboard!');
+            } catch (error) {
+                console.error('Encryption error:', error);
+                showNotification('Encryption failed. See console for details.', true);
+            }
+        }
+
+        async function decrypt() {
+            const ciphertextB64 = document.getElementById('decrypt-input').value;
+            const passphrase = document.getElementById('decrypt-passphrase').value;
+
+            if (!ciphertextB64 || !passphrase) {
+                showNotification('Please enter both the encrypted data and the correct passphrase.', true);
+                return;
+            }
+
+            try {
+                // Decode the Base64 string back into a byte array
+                const combinedArray = new Uint8Array(atob(ciphertextB64).split('').map(char => char.charCodeAt(0)));
+                // Extract the components
+                const salt = combinedArray.slice(0, 16);
+                const iv = combinedArray.slice(16, 28);
+                const ciphertext = combinedArray.slice(28);
+
+                const key = await deriveKey(passphrase, salt);
+
+                const decryptedData = await window.crypto.subtle.decrypt(
+                    { name: 'AES-GCM', iv: iv },
+                    key,
+                    ciphertext
+                );
+
+                const plaintext = new TextDecoder().decode(decrypted极Data);
+                document.getElementById('encryption-output').textContent = plaintext;
+            } catch (error) {
+                console.error('Decryption error:', error);
+                showNotification('Decryption failed. Incorrect passphrase or corrupted data.', true);
+            }
+        }
+
+        // Username generation
+        function generateUsername() {
+            const style = document.getElementById('username-style').value;
+            let username = '';
+            
+            switch(style) {
+                case 'crypto':
+                    username = `${randomElement(adjectives)}${randomElement(animals)}${Math.floor(Math.random() * 1000)}`;
+                    break;
+                case 'phonetic':
+                    username = `${randomElement(phonetic)}${Math.floor(Math.random() * 100)}${randomElement(phonetic)}`;
+                    break;
+                case 'book':
+                    username = `${randomElement(bookTitles)}${randomElement(characters)}${Math.floor(Math.random() * 100)}`;
+                    break;
+                case 'alliterative':
+                    const first = randomElement(adjectives);
+                    username = `${first}${randomElement(nouns)}${Math.floor(Math.random() * 100)}`;
+                    break;
+            }
+            
+            document.getElementById('username-output').textContent = username;
+            copyToClipboard(username);
+            showNotification('Username copied to clipboard!');
+        }
+        
+        function generateMultiple(count) {
+            let results = [];
+            for (let i = 0; i < count; i++) {
+                const style = document.getElementById('username-style').value;
+                let username = '';
+                
+                switch(style) {
+                    case 'crypto':
+                        username = `${randomElement(adjectives)}${randomElement(animals)}${Math.floor(Math.random() * 1000)}`;
+                        break;
+                    case 'phonetic':
+                        username = `${randomElement(phonetic)}${Math.floor(Math.random() * 100)}${randomElement(phonetic)}`;
+                        break;
+                    case 'book':
+                        username = `${randomElement(bookTitles)}${randomElement(characters)}${Math.floor(Math.random() * 100)}`;
+                        break;
+                    case 'alliterative':
+                        const first = randomElement(adjectives);
+                        username = `${first}${randomElement(nouns)}${Math.floor(Math.random() * 100)}`;
+                        break;
+                }
+                
+                results.push(username);
+            }
+            document.getElementById('username-output').textContent = results.join('\n');
+            showNotification(`${count} usernames generated!`);
+        }
+        
+        function randomElement(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // Hash generation
+        async function generateHash() {
+            const input = document.getElementById('hash-input').value;
+            const algorithm = document.getElementById('hash-algorithm').value;
+
+            if (!input) {
+                showNotification('Please enter some text to hash.', true);
+                return;
+            }
+
+            try {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(input);
+                const hashBuffer = await crypto.subtle.digest(algorithm, data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                
+                document.getElementById('hash-output').textContent = hashHex;
+                copyToClipboard(hashHex);
+                showNotification('Hash copied to clipboard!');
+            } catch (error) {
+                console.error('Hashing error:', error);
+                showNotification('Hashing failed. See console for details.', true);
+            }
+        }
+
+        // Utility functions
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            const icon = notification.querySelector('i');
+            
+            notification.className = 'notification';
+            if (isError) {
+                notification.classList.add('notification-error');
+                icon.className = 'fas fa-exclamation-circle';
+            } else {
+                notification.classList.add('notification-success');
+                icon.className = 'fas fa-check-circle';
+            }
+            
+            notification.querySelector("span").textContent = message;
+            
+            notification.classList.add("show");
+            setTimeout(() => {
+                notification.classList.remove("show");
+            }, 3000);
+        }
+
+        // Initialize with some examples
+        window.onload = function() {
+            document.getElementById("encrypt-input").value = "My secret message";
+            document.getElementById("encrypt-passphrase").value = "secure-passphrase-123";
+
+            document.getElementById("hash-input").value = "Hello World!";
+
+            generateUsername();
+        };
+    </script>
+</body>
+</html>
